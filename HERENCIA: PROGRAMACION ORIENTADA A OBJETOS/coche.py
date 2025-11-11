@@ -1,8 +1,8 @@
 class Vehiculo:
-    def __init__(self, marca, modelo, matricula):
+    def __init__(self, marca, modelo, año):
         self.__marca = marca
         self.__modelo = modelo
-        self.__matricula = matricula
+        self.__año = año
 
     def getMarca(self):
         return self.__marca
@@ -10,8 +10,8 @@ class Vehiculo:
     def getModelo(self):
         return self.__modelo
 
-    def getMatricula(self):
-        return self.__matricula
+    def getAño(self):
+        return self.__año
 
     def setMarca(self, marca):
         self.__marca = marca
@@ -19,16 +19,16 @@ class Vehiculo:
     def setModelo(self, modelo):
         self.__modelo = modelo
 
-    def setMatricula(self, matricula):
-        self.__matricula = matricula
+    def setAño(self, año):
+        self.__año = año
 
     def costo_por_km(self):
         raise NotImplementedError("Este método debe implementarse en las subclases.")
 
 
 class Coche(Vehiculo):
-    def __init__(self, marca, modelo, matricula, consumo_litros_km, precio_gasolina):
-        super().__init__(marca, modelo, matricula)
+    def __init__(self, marca, modelo, año, consumo_litros_km, precio_gasolina):
+        super().__init__(marca, modelo, año)
         self.__consumo_litros_km = consumo_litros_km
         self.__precio_gasolina = precio_gasolina
 
@@ -43,8 +43,8 @@ class Coche(Vehiculo):
 
 
 class Camion(Vehiculo):
-    def __init__(self, marca, modelo, matricula, consumo_litros_km, precio_diesel):
-        super().__init__(marca, modelo, matricula)
+    def __init__(self, marca, modelo, año, consumo_litros_km, precio_diesel):
+        super().__init__(marca, modelo, año)
         self.__consumo_litros_km = consumo_litros_km
         self.__precio_diesel = precio_diesel
 
@@ -53,8 +53,8 @@ class Camion(Vehiculo):
 
 
 class CocheElectrico(Coche):
-    def __init__(self, marca, modelo, matricula, consumo_kwh_km, precio_kwh):
-        super().__init__(marca, modelo, matricula, consumo_kwh_km, precio_kwh)
+    def __init__(self, marca, modelo, año, consumo_kwh_km, precio_kwh):
+        super().__init__(marca, modelo, año, consumo_kwh_km, precio_kwh)
 
     def costo_por_km(self):
         return self.getConsumo() * self.getPrecioGasolina()
@@ -86,10 +86,10 @@ if __name__ == "__main__":
             print("\n--- Agregar Coche ---")
             marca = input("Marca: ")
             modelo = input("Modelo: ")
-            matricula = input("Matrícula: ")
+            año = input("Año: ")
             consumo = float(input("Consumo (litros/km): "))
             precio = float(input("Precio gasolina (€/litro): "))
-            coche = Coche(marca, modelo, matricula, consumo, precio)
+            coche = Coche(marca, modelo, año, consumo, precio)
             vehiculos.append(coche)
             print("Coche agregado correctamente.")
 
@@ -97,10 +97,10 @@ if __name__ == "__main__":
             print("\n--- Agregar Camión ---")
             marca = input("Marca: ")
             modelo = input("Modelo: ")
-            matricula = input("Matrícula: ")
+            año = input("Año: ")
             consumo = float(input("Consumo (litros/km): "))
             precio = float(input("Precio diésel (€/litro): "))
-            camion = Camion(marca, modelo, matricula, consumo, precio)
+            camion = Camion(marca, modelo, año, consumo, precio)
             vehiculos.append(camion)
             print("Camión agregado correctamente.")
 
@@ -108,10 +108,10 @@ if __name__ == "__main__":
             print("\n--- Agregar Coche Eléctrico ---")
             marca = input("Marca: ")
             modelo = input("Modelo: ")
-            matricula = input("Matrícula: ")
+            año = input("Año: ")
             consumo = float(input("Consumo (kWh/km): "))
             precio = float(input("Precio energía eléctrica (€/kWh): "))
-            electrico = CocheElectrico(marca, modelo, matricula, consumo, precio)
+            electrico = CocheElectrico(marca, modelo, año, consumo, precio)
             vehiculos.append(electrico)
             print("Coche eléctrico agregado correctamente.")
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
                 print("No hay vehículos registrados.")
             else:
                 for i, v in enumerate(vehiculos):
-                    print(f"{i+1}. {v.getMarca()} {v.getModelo()} ({v.getMatricula()})")
+                    print(f"{i+1}. {v.getMarca()} {v.getModelo()} ({v.getAño()})")
 
         elif opcion == "5":
             if len(vehiculos) == 0:
@@ -139,4 +139,5 @@ if __name__ == "__main__":
 
         else:
             print("Opción no válida. Intente nuevamente.")
+
 
