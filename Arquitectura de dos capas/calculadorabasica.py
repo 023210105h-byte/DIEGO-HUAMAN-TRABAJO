@@ -1,12 +1,11 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 
-root = tk.Tk()
-root.title("Calculadora Básica")
-root.geometry("400x300")
-root.resizable(False, False)
+ventana = tk.Tk()
+ventana.title("Calculadora Básica")
+ventana.geometry("400x300")
 
-frame = ttk.Frame(root, padding=20)
+frame = ttk.Frame(ventana, padding=20)
 frame.grid(row=0, column=0)
 
 def validar_entradas():
@@ -59,10 +58,9 @@ def limpiar():
     lbl_resultado.config(text="Resultado:")
 
 def salir():
-    root.destroy()
+    ventana.destroy()
 
-ttk.Label(frame, text="Calculadora Básica", font=("Arial", 16, "bold"))\
-    .grid(row=0, column=0, columnspan=2, pady=10)
+ttk.Label(frame, text="Calculadora Básica", font=("Arial", 16, "bold")).grid(row=0, column=0, columnspan=2, pady=10)
 
 ttk.Label(frame, text="Número 1:").grid(row=1, column=0, sticky="e", pady=5)
 txt_num1 = ttk.Entry(frame)
@@ -87,4 +85,4 @@ ttk.Button(frame, text="Salir", width=15, command=salir).grid(row=5, column=1, p
 lbl_resultado = ttk.Label(frame, text="Resultado:", font=("Arial", 11, "bold"))
 lbl_resultado.grid(row=6, column=0, columnspan=2, pady=10)
 
-root.mainloop()
+ventana.mainloop()
